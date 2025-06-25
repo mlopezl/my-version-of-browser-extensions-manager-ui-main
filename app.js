@@ -6,8 +6,8 @@ const body = document.getElementById("body");
 const mainContent = document.querySelector(".cards__container");
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem("data")) {
-    localStorage.setItem("data", JSON.stringify(data));
+  if (!localStorage.getItem("mode")) {
+    localStorage.setItem("mode", JSON.stringify(mode));
   }
   const mode = localStorage.getItem("mode");
   if (mode) {
