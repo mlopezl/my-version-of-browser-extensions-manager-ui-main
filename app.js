@@ -6,41 +6,39 @@ const body = document.getElementById("body");
 const mainContent = document.querySelector(".cards__container");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const mode = {
-    darkMode: false
+  const body = document.getElementById("body");
+  
+  let mode = localStorage.getItem("mode");
+
+  if (!mode) {
+    mode = JSON.stringify({ darkMode: false });
+    localStorage.setItem("mode", mode);
   }
-  if (!localStorage.getItem("mode")) {
-    localStorage.setItem("mode", JSON.stringify(mode));
-  }
-  const getMode = localStorage.getItem("mode");
-  if (getMode) {
-    const modeJSON = JSON.parse(getMode);
-    if (modeJSON.darkMode) {
-      body.classList.add("dark__mode");
-    }
+
+  const modeJSON = JSON.parse(mode);
+  if (modeJSON.darkMode) {
+    body.classList.add("dark__mode");
   }
 });
+
 
 
 extensionsMode.addEventListener("click", () => {
-  const mode =localStorage.getItem("mode");
-  const modeJSON = JSON.parse(mode);
-  if(modeJSON.darkMode){
-    body.classList.remove("dark__mode");
-    const newMode = {
-      darkMode: !modeJSON.darkMode
-    }
-    const newModeJSON = JSON.stringify(newMode);
-    localStorage.setItem("mode", newModeJSON);
-  } else{
+  const modeStr = localStorage.getItem("mode");
+  if (!modeStr) return;
+
+  const modeJSON = JSON.parse(modeStr);
+  const isDark = !modeJSON.darkMode;
+
+  if (isDark) {
     body.classList.add("dark__mode");
-    const newMode = {
-      darkMode: !modeJSON.darkMode
-    }
-    const newModeJSON = JSON.stringify(newMode);
-    localStorage.setItem("mode", newModeJSON);
-  } 
+  } else {
+    body.classList.remove("dark__mode");
+  }
+
+  localStorage.setItem("mode", JSON.stringify({ darkMode: isDark }));
 });
+
 
 async function importData() {
   const fetchData = await fetch(url);
