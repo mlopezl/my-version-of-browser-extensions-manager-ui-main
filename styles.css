@@ -351,6 +351,23 @@ input:checked + .slider::before {
         justify-items: center;
         margin-bottom: 30px;
         padding: 0;
+        gap: 10px;
+    }
+
+    .card{
+        width: 260px;
+        height: 125px;
+    }
+
+    .card__header img{
+        width: 35px;
+    }
+
+    .card__header h2{
+        font-size: 0.8rem;
+    }
+    .card__header p{
+        font-size: 0.6rem;
     }
 }
 
