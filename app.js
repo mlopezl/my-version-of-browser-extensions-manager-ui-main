@@ -6,12 +6,15 @@ const body = document.getElementById("body");
 const mainContent = document.querySelector(".cards__container");
 
 document.addEventListener("DOMContentLoaded", () => {
+  const mode = {
+    darkMode: false
+  }
   if (!localStorage.getItem("mode")) {
     localStorage.setItem("mode", JSON.stringify(mode));
   }
-  const mode = localStorage.getItem("mode");
-  if (mode) {
-    const modeJSON = JSON.parse(mode);
+  const getMode = localStorage.getItem("mode");
+  if (getMode) {
+    const modeJSON = JSON.parse(getMode);
     if (modeJSON.darkMode) {
       body.classList.add("dark__mode");
     }
